@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080">
+<title>eGrantet — Brag</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  body { margin: 0; background: #0a1220; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+  /* Sub-comp slots stretch to fill the root. */
+  [data-composition-id="egrantet-brag"] > div[data-composition-src] { position: absolute; inset: 0; }
+
+  /* Persistent background — identical across scene cuts for seamless transitions. */
+  .bg-layer { position: absolute; inset: 0; }
+  #bg-gradient {
+    background: linear-gradient(135deg, #0a1220 0%, #0f2c47 38%, #123f69 62%, #166b75 100%);
+  }
+  #bg-grid {
+    opacity: 0.05;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 120px 120px;
+  }
+  #bg-glow-teal {
+    position: absolute; top: -260px; right: -200px; width: 900px; height: 900px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(34,197,148,0.20) 0%, rgba(34,197,148,0) 62%);
+  }
+  #bg-glow-blue {
+    position: absolute; bottom: -320px; left: -240px; width: 1000px; height: 1000px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,110,183,0.22) 0%, rgba(59,110,183,0) 62%);
+  }
+  #bg-ghost {
+    position: absolute; bottom: 48px; right: 80px;
+    font-family: "IBM Plex Mono", monospace; font-weight: 700;
+    font-size: 240px; letter-spacing: 0.02em; line-height: 1;
+    color: rgba(255,255,255,0.04); white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div data-hf-id="hf-ki3e" id="root" data-composition-id="egrantet-brag" data-width="1920" data-height="1080" data-duration="20" data-start="0">
+
+  <!-- Persistent background layers (not timed) -->
+  <div data-hf-id="hf-m6ln" class="bg-layer" id="bg-gradient"></div>
+  <div data-hf-id="hf-a72f" class="bg-layer" id="bg-grid"></div>
+  <div data-hf-id="hf-2zo5" id="bg-glow-teal"></div>
+  <div data-hf-id="hf-w1sf" id="bg-glow-blue"></div>
+  <div data-hf-id="hf-nejc" id="bg-ghost" data-layout-ignore="">GRANTS</div>
+
+  <!-- Scenes (sequential slots; shared bg makes cuts read as soft crossfades) -->
+  <div data-hf-id="hf-0p3d" id="el-s1" data-composition-id="s1-principle" data-composition-src="compositions/s1-principle.html" data-start="0" data-duration="4.5" data-track-index="1"></div>
+  <div data-hf-id="hf-wuwy" id="el-s2" data-composition-id="s2-discovery" data-composition-src="compositions/s2-discovery.html" data-start="4.5" data-duration="4" data-track-index="1"></div>
+  <div data-hf-id="hf-5h0r" id="el-s3" data-composition-id="s3-verification" data-composition-src="compositions/s3-verification.html" data-start="8.5" data-duration="5.5" data-track-index="1"></div>
+  <div data-hf-id="hf-3qm8" id="el-s4" data-composition-id="s4-verdict" data-composition-src="compositions/s4-verdict.html" data-start="14" data-duration="3.5" data-track-index="1"></div>
+  <div data-hf-id="hf-wanm" id="el-s5" data-composition-id="s5-outro" data-composition-src="compositions/s5-outro.html" data-start="17.5" data-duration="2.5" data-track-index="1"></div>
+
+  <!-- Music bed: fade in 0→0.6s, hold 0.32, fade out 18.6→20 -->
+  <audio data-hf-id="hf-c568" id="bg-music" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3" data-start="0" data-duration="20" data-track-index="10" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:0.6,&quot;v&quot;:0.32},{&quot;t&quot;:18.6,&quot;v&quot;:0.32},{&quot;t&quot;:20,&quot;v&quot;:0}]}]}"></audio>
+
+  <!-- SFX (sparse, warm, motion-matched; absolute root times) -->
+  <!-- Scene 1 clause reveals -->
+  <audio data-hf-id="hf-hqge" id="sfx-drop-1" src="assets/sfx/interface/drop_001.ogg" data-start="0.56" data-track-index="11" data-volume="0.5"></audio>
+  <audio data-hf-id="hf-0vfu" id="sfx-drop-2" src="assets/sfx/interface/drop_002.ogg" data-start="1.09" data-track-index="12" data-volume="0.5"></audio>
+  <audio data-hf-id="hf-pd13" id="sfx-drop-3" src="assets/sfx/interface/drop_001.ogg" data-start="2.19" data-track-index="13" data-volume="0.5"></audio>
+  <!-- Scene 2 card deals (beat-grid: 5.34s, 6.00s) -->
+  <audio data-hf-id="hf-g8x9" id="sfx-card-1" src="assets/sfx/casino/card-place-1.ogg" data-start="5.34" data-track-index="14" data-volume="0.55"></audio>
+  <audio data-hf-id="hf-u86c" id="sfx-card-2" src="assets/sfx/casino/card-place-1.ogg" data-start="6.00" data-track-index="15" data-volume="0.5"></audio>
+  <!-- Scene 3 row ticks (first + last row) -->
+  <audio data-hf-id="hf-ent7" id="sfx-row-1" src="assets/sfx/interface/drop_002.ogg" data-start="9.29" data-track-index="16" data-volume="0.4"></audio>
+  <audio data-hf-id="hf-qvh5" id="sfx-row-4" src="assets/sfx/interface/drop_001.ogg" data-start="10.93" data-track-index="17" data-volume="0.4"></audio>
+  <!-- Scene 4 cursor click + approval accent (beat-locked: 15.84s) -->
+  <audio data-hf-id="hf-8ndv" id="sfx-click-1" src="assets/sfx/interface/click_001.ogg" data-start="15.29" data-track-index="18" data-volume="0.65"></audio>
+  <audio data-hf-id="hf-q3iu" id="sfx-approve-1" src="assets/sfx/impact/impactSoft_medium_001.ogg" data-start="15.84" data-track-index="19" data-volume="0.6"></audio>
+  <!-- Scene 5 wordmark bell (beat-locked: 18.56s) -->
+  <audio data-hf-id="hf-ndvv" id="sfx-bell-1" src="assets/sfx/impact/impactBell_heavy_000.ogg" data-start="18.56" data-track-index="20" data-volume="0.5"></audio>
+</div>
+
+<script>
+  // Root timeline: persistent ambient motion (finite, seek-safe).
+  const tl = gsap.timeline({ paused: true });
+
+  // Teal glow breathes: 2.5s cycle, 7 half-cycles = 17.5s, then the swell owns the outro.
+  tl.fromTo("#bg-glow-teal", { scale: 1, opacity: 0.85 }, { scale: 1.12, opacity: 1, duration: 2.5, ease: "sine.inOut", yoyo: true, repeat: 6 }, 0);
+  // Blue glow breathes offset: 3s cycle, 6 half-cycles from 0.8s.
+  tl.fromTo("#bg-glow-blue", { scale: 1.1, opacity: 1 }, { scale: 0.95, opacity: 0.8, duration: 3, ease: "sine.inOut", yoyo: true, repeat: 5 }, 0.8);
+  // Ghost word drifts slowly left.
+  tl.fromTo("#bg-ghost", { x: 0 }, { x: -60, duration: 18, ease: "none" }, 0);
+  // Glow swell peaks at the wordmark landing (beat-locked: 18.56s).
+  tl.fromTo("#bg-glow-teal", { scale: 1.06, opacity: 0.92 }, { scale: 1.2, opacity: 1, duration: 0.42, ease: "power2.out", immediateRender: false }, 18.1);
+  tl.fromTo("#bg-glow-teal", { scale: 1.2, opacity: 1 }, { scale: 1.1, opacity: 0.95, duration: 1.1, ease: "sine.inOut", immediateRender: false }, 18.6);
+
+  window.__timelines["egrantet-brag"] = tl;
+</script>
+</body>
+</html>

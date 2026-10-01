@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<template>
+<style>
+  #root { position: absolute; inset: 0; font-family: "Poppins", sans-serif; }
+  .s3-frame { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 240px; box-sizing: border-box; }
+  .s3-panel {
+    background: #ffffff; border-radius: 18px; padding: 44px 52px 34px 52px;
+    box-shadow: 0 34px 80px rgba(6,16,30,0.5);
+  }
+  .s3-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+  .s3-title { display: flex; align-items: center; gap: 16px; }
+  .s3-mark {
+    width: 44px; height: 44px; border-radius: 10px; background: #eef4fb;
+    display: grid; place-items: center;
+  }
+  .s3-mark svg { width: 26px; height: 26px; }
+  .s3-title h2 { font-size: 34px; font-weight: 700; letter-spacing: -0.01em; color: #111827; margin: 0; }
+  .s3-status {
+    font-family: "IBM Plex Mono", monospace; font-size: 19px; font-weight: 700;
+    color: #065f46; background: #d8f3e6; border-radius: 999px; padding: 8px 20px;
+  }
+  .s3-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 17px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #6b7482; margin: 0 0 14px 0;
+  }
+  .s3-rows { display: flex; flex-direction: column; gap: 14px; }
+  .s3-row {
+    border: 1.5px solid #e2e7ef; border-radius: 12px; padding: 20px 24px;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  }
+  .s3-left { display: flex; align-items: center; gap: 16px; min-width: 0; }
+  .s3-ico { width: 30px; height: 30px; flex-shrink: 0; display: grid; place-items: center; }
+  .s3-ico svg { width: 26px; height: 26px; }
+  .s3-name { font-size: 25px; font-weight: 600; color: #111827; white-space: nowrap; }
+  .s3-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .s3-pill {
+    font-family: "IBM Plex Mono", monospace; font-size: 17px; font-weight: 400;
+    color: #374151; border: 1.5px solid #d7dee8; border-radius: 8px; padding: 6px 14px; white-space: nowrap;
+  }
+  .s3-result {
+    font-family: "IBM Plex Mono", monospace; font-size: 17px; font-weight: 700;
+    border-radius: 999px; padding: 8px 18px; white-space: nowrap;
+  }
+  .s3-row.pass .s3-result { color: #065f46; background: #d8f3e6; }
+  .s3-row.warn .s3-result { color: #7c4a03; background: #f7ecd4; }
+  .s3-row.warn .s3-ico svg { color: #b45309; }
+  .s3-row.pass .s3-ico svg { color: #047857; }
+  .s3-disclaimer {
+    margin: 26px 0 0 0; font-size: 19px; color: #6b7482;
+    opacity: 0;
+  }
+  .s3-disclaimer strong { color: #374151; font-weight: 600; }
+</style>
+
+<div data-hf-id="hf-lbqf" id="root" data-composition-id="s3-verification" data-width="1920" data-height="1080">
+  <div data-hf-id="hf-bs6z" class="s3-frame" data-layout-allow-overflow="">
+    <div data-hf-id="hf-802a" class="s3-panel" id="s3-panel">
+      <div data-hf-id="hf-wl5p" class="s3-head">
+        <div data-hf-id="hf-eqbj" class="s3-title">
+          <span data-hf-id="hf-bear" class="s3-mark" id="s3-mark">
+            <svg data-hf-id="hf-okp7" viewBox="0 0 24 24" fill="none" stroke="#155e75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle data-hf-id="hf-r9ft" cx="11" cy="11" r="7" /><path data-hf-id="hf-61mr" d="m21 21-4.3-4.3" /></svg>
+          </span>
+          <h2 data-hf-id="hf-sjl0">AI verification</h2>
+        </div>
+        <span data-hf-id="hf-5s0a" class="s3-status" id="s3-status">Completed</span>
+      </div>
+
+      <p data-hf-id="hf-7ra8" class="s3-label">Requirements</p>
+      <div data-hf-id="hf-mybg" class="s3-rows">
+        <div data-hf-id="hf-5xvd" class="s3-row pass" id="s3-row-1">
+          <div data-hf-id="hf-vf04" class="s3-left">
+            <span data-hf-id="hf-skjz" class="s3-ico"><svg data-hf-id="hf-12oc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-2q26" d="M20 6 9 17l-5-5" /></svg></span>
+            <span data-hf-id="hf-4xrz" class="s3-name">Registered in Gjakova</span>
+          </div>
+          <div data-hf-id="hf-ya97" class="s3-right">
+            <span data-hf-id="hf-gm8x" class="s3-pill">Deterministically verified</span>
+            <span data-hf-id="hf-yjjr" class="s3-result">Passed</span>
+          </div>
+        </div>
+        <div data-hf-id="hf-c3l6" class="s3-row pass" id="s3-row-2">
+          <div data-hf-id="hf-a570" class="s3-left">
+            <span data-hf-id="hf-m2b3" class="s3-ico"><svg data-hf-id="hf-8nvo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-l5ki" d="M20 6 9 17l-5-5" /></svg></span>
+            <span data-hf-id="hf-04f0" class="s3-name">Business older than 1 year</span>
+          </div>
+          <div data-hf-id="hf-88y3" class="s3-right">
+            <span data-hf-id="hf-v2d1" class="s3-pill">Deterministically verified</span>
+            <span data-hf-id="hf-20l3" class="s3-result">Passed</span>
+          </div>
+        </div>
+        <div data-hf-id="hf-g1p7" class="s3-row pass" id="s3-row-3">
+          <div data-hf-id="hf-8y9x" class="s3-left">
+            <span data-hf-id="hf-lo02" class="s3-ico"><svg data-hf-id="hf-n58i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-fhc4" d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path data-hf-id="hf-yfzu" d="m9 12 2 2 4-4" /></svg></span>
+            <span data-hf-id="hf-9poq" class="s3-name">registration-certificate.pdf</span>
+          </div>
+          <div data-hf-id="hf-7un2" class="s3-right">
+            <span data-hf-id="hf-ddvw" class="s3-pill">AI-assisted</span>
+            <span data-hf-id="hf-ubtp" class="s3-result">Verified · 97%</span>
+          </div>
+        </div>
+        <div data-hf-id="hf-u48f" class="s3-row warn" id="s3-row-4">
+          <div data-hf-id="hf-9cky" class="s3-left">
+            <span data-hf-id="hf-l9p1" class="s3-ico"><svg data-hf-id="hf-tmee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-2l4s" d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" /><path data-hf-id="hf-mlkx" d="M12 9v4" /><path data-hf-id="hf-c2s1" d="M12 17h.01" /></svg></span>
+            <span data-hf-id="hf-kpz3" class="s3-name">Address mismatch flagged</span>
+          </div>
+          <div data-hf-id="hf-7gc1" class="s3-right">
+            <span data-hf-id="hf-vn38" class="s3-pill">AI-assisted</span>
+            <span data-hf-id="hf-v6co" class="s3-result">Needs review</span>
+          </div>
+        </div>
+      </div>
+
+      <p data-hf-id="hf-bs31" class="s3-disclaimer" id="s3-disclaimer">AI results are assistance only — <strong data-hf-id="hf-6r7t">deterministic rules and the human reviewer decide.</strong></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Panel + header
+  tl.fromTo("#s3-panel", { opacity: 0, y: 60, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0.15);
+  tl.fromTo("#s3-status", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 0.55);
+
+  // Rows arrive one by one — every other beat (~0.55s apart), fast-in then hold.
+  // Row 1 (SFX drop_002 at 9.29 → local 0.79) // beat-grid: 9.29s
+  tl.fromTo("#s3-row-1", { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 0.79);
+  // Row 2 (local 1.34) // beat-grid: 9.84s
+  tl.fromTo("#s3-row-2", { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 1.34);
+  // Row 3 (local 1.89) // beat-grid: 10.39s
+  tl.fromTo("#s3-row-3", { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 1.89);
+  // Row 4 — the AI-assisted warning (beat-locked: 10.93s → local 2.43; SFX drop_001)
+  tl.fromTo("#s3-row-4", { opacity: 0, x: -44 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 2.43);
+
+  // Disclaimer settles last, then holds
+  tl.fromTo("#s3-disclaimer", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 3.05);
+
+  // Gentle exit lift
+  tl.fromTo(".s3-frame", { y: 0, opacity: 1 }, { y: -24, opacity: 0.55, duration: 0.45, ease: "power2.in" }, 5.05);
+
+  window.__timelines["s3-verification"] = tl;
+</script>
+</template>
+</body>
+</html>

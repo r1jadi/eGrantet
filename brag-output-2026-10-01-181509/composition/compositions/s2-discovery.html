@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<template>
+<style>
+  #root { position: absolute; inset: 0; font-family: "Poppins", sans-serif; }
+  .s2-frame { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 150px; box-sizing: border-box; }
+  .s2-kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 22px; font-weight: 400;
+    letter-spacing: 0.32em; text-transform: uppercase; color: rgba(251,252,254,0.62);
+    margin: 0 0 18px 4px;
+  }
+  .s2-title { font-size: 54px; font-weight: 700; letter-spacing: -0.02em; color: #fbfcfe; margin: 0 0 46px 0; }
+  .s2-cards { display: flex; gap: 36px; }
+  .s2-card {
+    width: 620px; background: #ffffff; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 30px 70px rgba(6,16,30,0.45);
+  }
+  .s2-strip { height: 10px; width: 100%; background: linear-gradient(90deg, #047857, #0d9488); }
+  .s2-card.alt .s2-strip { background: linear-gradient(90deg, #3730a3, #0284c7); }
+  .s2-body { padding: 34px 36px 30px 36px; }
+  .s2-meta { display: flex; justify-content: space-between; align-items: center; }
+  .s2-badge {
+    font-family: "IBM Plex Mono", monospace; font-size: 19px; font-weight: 400;
+    color: #1f2937; border: 2px solid #d7dee8; border-radius: 999px; padding: 7px 18px;
+  }
+  .s2-amount { font-size: 30px; font-weight: 700; color: #155e75; }
+  .s2-card h3 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; color: #111827; margin: 26px 0 0 0; }
+  .s2-desc { font-size: 24px; line-height: 1.5; color: #5b6472; margin: 14px 0 0 0; }
+  .s2-foot {
+    margin-top: 30px; padding-top: 22px; border-top: 1px solid #e5e9f0;
+    font-family: "IBM Plex Mono", monospace; font-size: 21px; color: #5b6472;
+  }
+  .s2-foot .accent { color: #155e75; font-weight: 700; }
+</style>
+
+<div data-hf-id="hf-y3g1" id="root" data-composition-id="s2-discovery" data-width="1920" data-height="1080">
+  <div data-hf-id="hf-k96i" class="s2-frame" data-layout-allow-overflow="">
+    <p data-hf-id="hf-jqg4" class="s2-kicker" id="s2-kicker">Applicant · Discovery</p>
+    <h2 data-hf-id="hf-c9hi" class="s2-title" id="s2-title">Grants worth exploring</h2>
+    <div data-hf-id="hf-qe7l" class="s2-cards">
+      <div data-hf-id="hf-ppu0" class="s2-card" id="s2-card-1">
+        <div data-hf-id="hf-8zm6" class="s2-strip"></div>
+        <div data-hf-id="hf-vkz4" class="s2-body">
+          <div data-hf-id="hf-i0rf" class="s2-meta"><span data-hf-id="hf-u3kz" class="s2-badge">Gjakova</span><span data-hf-id="hf-dhum" class="s2-amount">Up to €10,000</span></div>
+          <h3 data-hf-id="hf-quvx">Community Garden Revival</h3>
+          <p data-hf-id="hf-nfps" class="s2-desc">Funding for community projects that make the neighbourhood greener.</p>
+          <p data-hf-id="hf-0tox" class="s2-foot">Deadline 31.12.2026 · <span data-hf-id="hf-r0xm" class="accent">View grant →</span></p>
+        </div>
+      </div>
+      <div data-hf-id="hf-gx2g" class="s2-card alt" id="s2-card-2">
+        <div data-hf-id="hf-ouoi" class="s2-strip"></div>
+        <div data-hf-id="hf-987c" class="s2-body">
+          <div data-hf-id="hf-2emz" class="s2-meta"><span data-hf-id="hf-k78j" class="s2-badge">Gjakova</span><span data-hf-id="hf-ic3y" class="s2-amount">Up to €5,000</span></div>
+          <h3 data-hf-id="hf-3c8b">Neighbourhood Mural Fund</h3>
+          <p data-hf-id="hf-a7c1" class="s2-desc">Support for culture and young people shaping public space.</p>
+          <p data-hf-id="hf-yn5j" class="s2-foot">Deadline 28.02.2027 · <span data-hf-id="hf-n7ku" class="accent">View grant →</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Kicker + title
+  tl.fromTo("#s2-kicker", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.1);
+  tl.fromTo("#s2-title", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.2);
+
+  // Card 1 deals in (beat-locked: 5.34s → scene-local 0.84s; SFX card-place at 5.34)
+  tl.fromTo("#s2-card-1", { opacity: 0, y: 90, rotation: -3, scale: 0.94 },
+    { opacity: 1, y: 0, rotation: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 0.84);
+
+  // Card 2 deals in (beat-grid: 6.00s → scene-local 1.50s; SFX card-place at 6.00)
+  tl.fromTo("#s2-card-2", { opacity: 0, y: 90, rotation: 3, scale: 0.94 },
+    { opacity: 1, y: 0, rotation: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 1.5);
+
+  // Gentle exit lift
+  tl.fromTo(".s2-frame", { y: 0, opacity: 1 }, { y: -26, opacity: 0.55, duration: 0.45, ease: "power2.in" }, 3.55);
+
+  window.__timelines["s2-discovery"] = tl;
+</script>
+</template>
+</body>
+</html>

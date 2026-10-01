@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<template>
+<style>
+  #root { position: absolute; inset: 0; font-family: "Poppins", sans-serif; }
+  .s4-frame { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 260px; box-sizing: border-box; }
+  .s4-caption {
+    font-family: "IBM Plex Mono", monospace; font-size: 22px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: rgba(251,252,254,0.62); margin: 0 0 26px 4px;
+  }
+  .s4-panel {
+    background: #ffffff; border-radius: 18px; padding: 46px 52px;
+    box-shadow: 0 34px 80px rgba(6,16,30,0.5);
+  }
+  .s4-head { display: flex; justify-content: space-between; align-items: center; }
+  .s4-title h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.01em; color: #111827; margin: 0 0 8px 0; }
+  .s4-title p { font-family: "IBM Plex Mono", monospace; font-size: 19px; color: #5d6572; margin: 0; }
+  .s4-badge {
+    font-family: "IBM Plex Mono", monospace; font-size: 19px; font-weight: 700;
+    border-radius: 999px; padding: 9px 22px; white-space: nowrap;
+    color: #92400e; background: #f7ecd4;
+  }
+  .s4-badge.flipped { color: #065f46; background: #d8f3e6; }
+  .s4-bar {
+    margin-top: 34px; padding-top: 30px; border-top: 1.5px solid #e2e7ef;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .s4-bar-label { font-family: "IBM Plex Mono", monospace; font-size: 18px; color: #5d6572; }
+  .s4-approve {
+    position: relative;
+    font-size: 26px; font-weight: 600; color: #ffffff;
+    background: #1f4e8c; border-radius: 12px; padding: 18px 44px;
+  }
+  .s4-cursor { position: absolute; left: 0; top: 0; z-index: 30; }
+  .s4-cursor svg { width: 44px; height: 44px; filter: drop-shadow(0 3px 6px rgba(6,16,30,0.45)); }
+  .s4-note {
+    margin: 30px 0 0 0; font-size: 23px; color: #374151; opacity: 0;
+  }
+  .s4-note strong { color: #111827; }
+</style>
+
+<div data-hf-id="hf-wb00" id="root" data-composition-id="s4-verdict" data-width="1920" data-height="1080">
+  <div data-hf-id="hf-sssg" class="s4-frame" data-layout-allow-overflow="">
+    <p data-hf-id="hf-dmpk" class="s4-caption" id="s4-caption">Municipality · Review</p>
+    <div data-hf-id="hf-x89i" class="s4-panel" id="s4-panel">
+      <div data-hf-id="hf-0ynk" class="s4-head">
+        <div data-hf-id="hf-i46g" class="s4-title">
+          <h2 data-hf-id="hf-9sme">Community Garden Revival</h2>
+          <p data-hf-id="hf-e2b6">Reference 3F9A21C7 · Submitted 12.10.2026</p>
+        </div>
+        <span data-hf-id="hf-84lp" class="s4-badge" id="s4-badge">Under review</span>
+      </div>
+      <div data-hf-id="hf-3lnh" class="s4-bar">
+        <span data-hf-id="hf-7l23" class="s4-bar-label">Final decision</span>
+        <span data-hf-id="hf-iv9m" class="s4-approve" id="s4-approve">Approve application</span>
+      </div>
+    </div>
+    <p data-hf-id="hf-o0rg" class="s4-note" id="s4-note"><strong data-hf-id="hf-jgox">Approved.</strong> The decision — and the responsibility — stay human.</p>
+
+    <!-- Simulated cursor -->
+    <div data-hf-id="hf-9sfu" class="s4-cursor" id="s4-cursor">
+      <svg data-hf-id="hf-7xz7" viewBox="0 0 24 24" fill="#fbfcfe" stroke="#0a1220" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-d9pn" d="M4.5 2.5 19.5 13h-6.9l-1.4 5.6z" /></svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Frame + panel arrive
+  tl.fromTo("#s4-caption", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.1);
+  tl.fromTo("#s4-panel", { opacity: 0, y: 56, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 0.2);
+
+  // Cursor glides to the approve button
+  // Panel is padded 0 260px; approve button sits right side. Cursor travels from lower-left.
+  tl.set("#s4-cursor", { x: 320, y: 760, opacity: 0 }, 0);
+  tl.fromTo("#s4-cursor", { x: 320, y: 760, opacity: 0 }, { x: 1120, y: 480, opacity: 1, duration: 0.75, ease: "power2.inOut" }, 0.55);
+
+  // Click: cursor dips + button presses (spring) at 1.85s local (beat: 15.84 global = 1.84 local)
+  tl.fromTo("#s4-cursor", { scale: 1 }, { scale: 0.82, duration: 0.09, ease: "power2.in", immediateRender: false }, 1.84);
+  tl.fromTo("#s4-cursor", { scale: 0.82 }, { scale: 1, duration: 0.16, ease: "back.out(2)", immediateRender: false }, 1.95);
+  tl.fromTo("#s4-approve", { scale: 1 }, { scale: 0.94, duration: 0.09, ease: "power2.in", immediateRender: false }, 1.84);
+  tl.fromTo("#s4-approve", { scale: 0.94 }, { scale: 1, duration: 0.3, ease: "back.out(2.4)", immediateRender: false }, 1.95);
+
+  // Status pill flips to Approved right after the click (impactSoft accent at 15.84 global = 1.84 local)
+  tl.fromTo("#s4-badge", { opacity: 1 }, { opacity: 0, duration: 0.14, ease: "power2.in", immediateRender: false }, 2.02);
+  tl.fromTo("#s4-badge", { opacity: 0, scale: 0.8, x: 0 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", immediateRender: false }, 2.16);
+
+  // Closing note
+  tl.fromTo("#s4-note", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 2.55);
+
+  window.__timelines["s4-verdict"] = tl;
+</script>
+</template>
+</body>
+</html>

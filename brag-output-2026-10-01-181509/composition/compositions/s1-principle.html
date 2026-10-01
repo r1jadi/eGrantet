@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<template>
+<style>
+  #root { position: absolute; inset: 0; font-family: "Poppins", sans-serif; }
+  .s1-frame { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 160px; box-sizing: border-box; }
+  .s1-kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 22px; font-weight: 400;
+    letter-spacing: 0.32em; text-transform: uppercase; color: rgba(251,252,254,0.62);
+    margin: 0 0 44px 8px;
+  }
+  .s1-line { margin: 0 0 26px 0; }
+  .s1-clause {
+    font-size: 74px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.08;
+    color: #fbfcfe; opacity: 0.28;
+  }
+  .s1-clause em { font-style: normal; color: #35d0a4; }
+  .s1-rule {
+    height: 4px; width: 560px; margin: 14px 0 34px 8px; border-radius: 2px;
+    background: linear-gradient(90deg, #35d0a4, rgba(53,208,164,0));
+    transform: scaleX(0); transform-origin: left center;
+  }
+</style>
+
+<div data-hf-id="hf-vddm" id="root" data-composition-id="s1-principle" data-width="1920" data-height="1080">
+  <div data-hf-id="hf-nv45" class="s1-frame" data-layout-allow-overflow="">
+    <p data-hf-id="hf-4xdt" class="s1-kicker" id="s1-kicker">eGrantet · Municipal grants</p>
+    <div data-hf-id="hf-d3d2" class="s1-line" id="s1-line-1"><h1 data-hf-id="hf-fyl6" class="s1-clause"><em data-hf-id="hf-gb8x">AI</em> assists.</h1><div data-hf-id="hf-5la3" class="s1-rule"></div></div>
+    <div data-hf-id="hf-9591" class="s1-line" id="s1-line-2"><h1 data-hf-id="hf-8aw3" class="s1-clause">Deterministic rules <em data-hf-id="hf-gli2">verify</em>.</h1><div data-hf-id="hf-hsqj" class="s1-rule"></div></div>
+    <div data-hf-id="hf-65zg" class="s1-line" id="s1-line-3"><h1 data-hf-id="hf-zn95" class="s1-clause">Humans make the <em data-hf-id="hf-oe2l">final</em> decision.</h1><div data-hf-id="hf-hefi" class="s1-rule"></div></div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Kicker
+  tl.fromTo("#s1-kicker", { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.1);
+
+  // Clause 1 — slam in fast, then hold (SFX drop_001 at 0.56)
+  tl.fromTo("#s1-line-1 .s1-clause", { opacity: 0.28, y: 34 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.5);
+  tl.fromTo("#s1-line-1 .s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 0.72);
+
+  // Clause 2 — SFX drop_002 at 1.09
+  tl.fromTo("#s1-line-2 .s1-clause", { opacity: 0.28, y: 34 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 1.03);
+  tl.fromTo("#s1-line-2 .s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 1.25);
+
+  // Clause 3 — SFX drop_001 at 2.19
+  tl.fromTo("#s1-line-3 .s1-clause", { opacity: 0.28, y: 34 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 2.13);
+  tl.fromTo("#s1-line-3 .s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 2.35);
+
+  // Gentle exit lift for the whole frame (scene handoff)
+  tl.fromTo(".s1-frame", { y: 0, opacity: 1 }, { y: -26, opacity: 0.55, duration: 0.5, ease: "power2.in" }, 4.0);
+
+  window.__timelines["s1-principle"] = tl;
+</script>
+</template>
+</body>
+</html>

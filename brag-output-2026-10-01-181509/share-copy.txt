@@ -1,0 +1,2 @@
+We built an AI grants platform. The AI doesn't decide anything — deterministic rules verify, humans decide.
+eGrantet: municipal funding, finally readable.

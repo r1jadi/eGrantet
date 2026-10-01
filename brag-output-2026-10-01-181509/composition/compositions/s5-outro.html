@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<template>
+<style>
+  #root { position: absolute; inset: 0; font-family: "Poppins", sans-serif; }
+  .s5-frame { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 140px; box-sizing: border-box; }
+  .s5-line {
+    font-size: 58px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.18;
+    color: #fbfcfe; margin: 0;
+  }
+  .s5-line em { font-style: normal; color: #35d0a4; }
+  .s5-wordmark {
+    font-family: "IBM Plex Mono", monospace; font-size: 108px; font-weight: 700; letter-spacing: -0.01em;
+    color: #fbfcfe; margin: 52px 0 0 0; line-height: 1;
+  }
+  .s5-tagline {
+    font-family: "IBM Plex Mono", monospace; font-size: 26px; letter-spacing: 0.14em;
+    color: rgba(251,252,254,0.68); margin: 26px 0 0 0;
+  }
+  .s5-rule {
+    height: 4px; width: 320px; border-radius: 2px; margin-top: 34px;
+    background: linear-gradient(90deg, rgba(53,208,164,0), #35d0a4, rgba(53,208,164,0));
+    transform: scaleX(0);
+  }
+</style>
+
+<div data-hf-id="hf-4icp" id="root" data-composition-id="s5-outro" data-width="1920" data-height="1080">
+  <div data-hf-id="hf-q8c9" class="s5-frame" data-layout-allow-overflow="">
+    <p data-hf-id="hf-5dcb" class="s5-line" id="s5-line">Every grant gets decided by a <em data-hf-id="hf-rtj0">human</em>.</p>
+    <h1 data-hf-id="hf-osdy" class="s5-wordmark" id="s5-wordmark">eGrantet</h1>
+    <p data-hf-id="hf-ne3x" class="s5-tagline" id="s5-tagline">Bring your local idea to life.</p>
+    <div data-hf-id="hf-je1k" class="s5-rule" id="s5-rule"></div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Closing line
+  tl.fromTo("#s5-line", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.08);
+
+  // Wordmark lands on the bell (beat-locked: 18.56s global = 1.06s local; SFX impactBell at 18.56)
+  tl.fromTo("#s5-wordmark", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 1.0);
+
+  // Tagline + rule follow
+  tl.fromTo("#s5-tagline", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 1.32);
+  tl.fromTo("#s5-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "power2.out" }, 1.45);
+
+  window.__timelines["s5-outro"] = tl;
+</script>
+</template>
+</body>
+</html>
