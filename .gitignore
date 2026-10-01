@@ -1,0 +1,16 @@
+# dependencies and builds
+node_modules/
+.next/
+out/
+
+# local environment and secrets
+.env
+.env.*
+!.env.example
+
+# local tooling
+coverage/
+*.tsbuildinfo
+.DS_Store
+.freebuff/
+.tmp-dev-server.log

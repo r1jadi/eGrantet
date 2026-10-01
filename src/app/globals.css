@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens — e-grants system (Manrope body / DM Sans display, steel-blue
+ * primary, mint secondary). Values mirror the reference palette exactly.
+ */
+:root {
+  --background: oklch(97.5% 0.006 246);
+  --foreground: oklch(23% 0.035 253);
+  --card: oklch(100% 0 0);
+  --primary: oklch(43% 0.13 252);
+  --primary-foreground: oklch(99% 0.002 246);
+  --secondary: oklch(93% 0.025 166);
+  --secondary-foreground: oklch(32% 0.08 166);
+  --muted: oklch(95% 0.009 248);
+  --muted-foreground: oklch(50% 0.028 250);
+  --border: oklch(89% 0.014 248);
+  --success: oklch(45% 0.12 165);
+  --success-background: oklch(95% 0.03 166);
+  --warning: oklch(55% 0.13 75);
+  --warning-background: oklch(96% 0.05 90);
+  --destructive: oklch(57.7% 0.245 27.325);
+  --destructive-background: oklch(95% 0.03 25);
+  --on-accent: oklch(99% 0.002 246);
+  --on-accent-soft: oklch(93% 0.026 246);
+  --ring: oklch(55% 0.13 250);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark {
+  --background: oklch(12.9% 0.042 264.695);
+  --foreground: oklch(98.4% 0.003 247.858);
+  --card: oklch(20.8% 0.042 265.755);
+  --primary: oklch(92.9% 0.013 255.508);
+  --primary-foreground: oklch(20.8% 0.042 265.755);
+  --secondary: oklch(27.9% 0.041 260.031);
+  --secondary-foreground: oklch(98.4% 0.003 247.858);
+  --muted: oklch(27.9% 0.041 260.031);
+  --muted-foreground: oklch(70.4% 0.04 256.788);
+  --border: oklch(100% 0 0 / 0.1);
+  --success: oklch(69.6% 0.17 162.48);
+  --success-background: oklch(26% 0.06 165);
+  --warning: oklch(76.9% 0.188 70.08);
+  --warning-background: oklch(26% 0.06 70);
+  --destructive: oklch(70.4% 0.191 22.216);
+  --destructive-background: oklch(28% 0.08 25);
+  --on-accent: oklch(20.8% 0.042 265.755);
+  --on-accent-soft: oklch(70.4% 0.04 256.788);
+  --ring: oklch(55.1% 0.027 264.364);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-success: var(--success);
+  --color-success-background: var(--success-background);
+  --color-warning: var(--warning);
+  --color-warning-background: var(--warning-background);
+  --color-destructive: var(--destructive);
+  --color-destructive-background: var(--destructive-background);
+  --color-on-accent: var(--on-accent);
+  --color-on-accent-soft: var(--on-accent-soft);
+}
+
+* { border-color: var(--border); }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+button, input, select, textarea { font: inherit; }
+
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }

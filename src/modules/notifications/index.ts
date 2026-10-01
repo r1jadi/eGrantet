@@ -1,0 +1,15 @@
+export * from "./types";
+export { createNotification } from "./services/notification-service";
+export { listNotificationsForCurrentUser, countUnreadNotifications, markNotificationsRead, type NotificationItem } from "./services/notification-query-service";
+export { markNotificationsReadAction, countUnreadNotificationsAction, clearReadNotificationsAction, dismissNotificationAction } from "./actions/notification-actions";
+export { NotificationsBell } from "./components/notifications-bell";
+export { MarkAllReadButton } from "./components/mark-all-read-button";
+export { ClearReadButton } from "./components/clear-read-button";
+export { notifyUser, getNotificationPreferences, updateNotificationPreferences, getAccountEmail, grantUrl, applicationUrl, evaluatorApplicationUrl, type NotificationCategory, type NotifyTarget, type NotificationPreferences } from "./services/email-notification-service";
+export { notifyRelevantUsersOfPublishedGrant, type RecommendationOutcome } from "./services/grant-recommendation-service";
+export { scoreGrantForProfile, isRelevantMatch, getMatchThreshold, DEFAULT_MATCH_THRESHOLD, type GrantMatchResult, type ApplicantProfile, type GrantMatchInput } from "./grant-matching";
+export { renderEmailTemplate, matchReasonLabel, type RenderedEmail, type EmailTemplateKind, type GrantEmailVariables } from "./email/email-types";
+export { renderEmailHtml, renderEmailText } from "./email/email-html";
+export { sendRenderedEmail, type SentEmailResult } from "./email/resend-email-service";
+export { NotificationSettingsForm } from "./components/notification-settings-form";
+export { saveNotificationPreferencesAction, saveLanguagePreferenceAction, loadNotificationPreferencesAction, type PreferenceState } from "./actions/preference-actions";
