@@ -1,7 +1,7 @@
 import { AppError } from "@/lib/errors/app-error";
 
 /**
- * Pure in-memory sliding-window rate-limit store.
+ * Pure in-memory fixed-window rate-limit store.
  *
  * DOM- and server-free so it can be unit tested under plain Node. The
  * server-only wrapper in `./rate-limit` adds client identification from
