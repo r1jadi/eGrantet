@@ -7,4 +7,4 @@ export { normalizeBusinessNui, requireValidBusinessNui, businessNuiInputSchema, 
 // into the browser bundle. Auth pages import it from its own file directly.
 export { AuthForm } from "./components/auth-forms";
 export { SignOutButton } from "./components/sign-out-button";
-export { AuthNavControls } from "./components/auth-nav-controls";
+export { AuthNavControls, useSessionIdentity, type SessionIdentity } from "./components/auth-nav-controls";

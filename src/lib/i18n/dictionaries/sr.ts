@@ -1089,6 +1089,7 @@ export const sr: Dictionary = {
     settings: "Podešavanja",
     signIn: "Prijava",
     signOut: "Odjava",
+    signUp: "Registruj se",
     switchToDark: "Prebaci na tamni režim",
     switchToLight: "Prebaci na svetli režim",
   },

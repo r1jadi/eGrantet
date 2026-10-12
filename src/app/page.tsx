@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GrantCard } from "@/modules/grants/components/grant-card";
 import { ApplicantShell } from "@/modules/grants/components/applicant-shell";
 import { listPublicDirectoryGrants } from "@/modules/grants";
+import { getCurrentProfile } from "@/lib/auth/server";
 import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
@@ -13,6 +14,9 @@ export const metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
   const locale = await getServerLocale();
   const t = (key: Parameters<typeof translate>[1]) => translate(locale, key);
+  // Guests get a registration CTA in the hero; signed-in visitors already
+  // have account actions in the header and must not see a duplicate CTA.
+  const profile = await getCurrentProfile().catch(() => null);
   let featured: Awaited<ReturnType<typeof listPublicDirectoryGrants>> = [];
   try {
     featured = (await listPublicDirectoryGrants()).slice(0, 3);
@@ -26,7 +30,7 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
           <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-on-accent-soft">{t("home.heroBadge")}</p>
           <div className="mt-6 max-w-3xl"><h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{t("home.heroTitle")}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-on-accent-soft">{t("home.heroSubtitle")}</p></div>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Link href="/grants" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-white px-5 py-2 text-sm font-semibold text-primary transition-colors hover:bg-white/90 dark:bg-primary-foreground dark:hover:bg-primary-foreground/90">{t("home.exploreGrants")} <ArrowRight className="size-4" aria-hidden="true" /></Link><a href="#how-it-works" className="inline-flex min-h-11 items-center justify-center rounded-md border border-white/30 px-5 py-2 text-sm font-semibold transition-colors hover:bg-white/10">{t("home.howItWorks")}</a></div>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Link href="/grants" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-white px-5 py-2 text-sm font-semibold text-primary transition-colors hover:bg-white/90 dark:bg-primary-foreground dark:hover:bg-primary-foreground/90">{t("home.exploreGrants")} <ArrowRight className="size-4" aria-hidden="true" /></Link>{!profile && <Link href="/register" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-white/30 px-5 py-2 text-sm font-semibold transition-colors hover:bg-white/10">{t("nav.signUp")} <ArrowRight className="size-4" aria-hidden="true" /></Link>}<a href="#how-it-works" className="inline-flex min-h-11 items-center justify-center rounded-md border border-white/30 px-5 py-2 text-sm font-semibold transition-colors hover:bg-white/10">{t("home.howItWorks")}</a></div>
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm font-semibold uppercase tracking-wider text-primary">{t("home.openOpportunities")}</p><h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">{t("home.grantsTitle")}</h2><p className="mt-2 text-muted-foreground">{t("home.grantsSubtitle")}</p></div><Link href="/grants" className="text-sm font-semibold text-primary hover:underline">{t("home.seeAllGrants")} <span aria-hidden="true">→</span></Link></div>

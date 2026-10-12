@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, FileText, House, Landmark, Menu, Search, X } from "lucide-react";
+import { Bell, FileText, House, Landmark, LogIn, Menu, Search, UserPlus, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
@@ -9,14 +9,48 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { useT } from "@/lib/i18n/client";
 import { LanguageToggle } from "@/lib/i18n/language-toggle";
 import type { TranslationKey } from "@/lib/i18n";
-import { AuthNavControls } from "@/modules/users";
+import { AuthNavControls, useSessionIdentity } from "@/modules/users";
 import { SiteFooter } from "@/components/shared/site-footer";
+import { resolveMobileMenuAuthState } from "./mobile-menu-auth-state";
 
 const navigation: Array<{ labelKey: TranslationKey; href: string; icon: typeof House }> = [
   { labelKey: "nav.home", href: "/", icon: House },
   { labelKey: "nav.findGrants", href: "/grants", icon: Search },
   { labelKey: "nav.myProjects", href: "/projects", icon: FileText },
 ];
+
+/**
+ * Registration and sign-in actions at the bottom of the mobile menu.
+ * Rendered only for unauthenticated visitors: the header sign-in control is
+ * hidden below the `sm` breakpoint, so without this block mobile guests have
+ * no path to `/register`. Signed-in visitors keep using the existing header
+ * account menu, which stays visible on all viewports.
+ */
+function MobileMenuAuthActions({ onNavigate }: { onNavigate: () => void }) {
+  const { identity, checked } = useSessionIdentity();
+  const t = useT();
+  if (resolveMobileMenuAuthState(checked, identity) !== "guest") return null;
+  return (
+    <div className="mt-2 space-y-2 border-t pt-3">
+      <Link
+        href="/register"
+        onClick={onNavigate}
+        className="flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+      >
+        <UserPlus className="size-4" aria-hidden="true" />
+        {t("nav.signUp")}
+      </Link>
+      <Link
+        href="/login"
+        onClick={onNavigate}
+        className="flex min-h-11 items-center justify-center gap-2 rounded-md border px-4 text-sm font-semibold transition-colors hover:bg-muted"
+      >
+        <LogIn className="size-4" aria-hidden="true" />
+        {t("nav.signIn")}
+      </Link>
+    </div>
+  );
+}
 
 export function ApplicantShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,7 +78,7 @@ export function ApplicantShell({ children }: { children: ReactNode }) {
           <button type="button" className="rounded-md p-2 hover:bg-muted md:hidden" aria-expanded={menuOpen} aria-controls="applicant-menu" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}<span className="sr-only">{t("common.menu")}</span></button>
         </div>
       </div>
-      {menuOpen && <nav id="applicant-menu" aria-label={t("nav.mobileNavigation")} className="border-t bg-card px-4 py-3 md:hidden">{navigation.map(({ labelKey, href, icon: Icon }) => <Link key={href} href={href} onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"><Icon className="size-4" aria-hidden="true" />{t(labelKey)}</Link>)}</nav>}
+      {menuOpen && <nav id="applicant-menu" aria-label={t("nav.mobileNavigation")} className="border-t bg-card px-4 py-3 md:hidden">{navigation.map(({ labelKey, href, icon: Icon }) => <Link key={href} href={href} onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"><Icon className="size-4" aria-hidden="true" />{t(labelKey)}</Link>)}<MobileMenuAuthActions onNavigate={() => setMenuOpen(false)} /></nav>}
     </header>
     <div className="flex-1">{children}</div>
     <SiteFooter />

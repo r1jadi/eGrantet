@@ -84,6 +84,7 @@ export const sq: Dictionary = {
     notifications: "Njoftimet",
     signIn: "Hyr",
     signOut: "Dil",
+    signUp: "Regjistrohu",
     account: "Llogaria",
     myProfile: "Profili im",
     myBusiness: "Biznesi im",

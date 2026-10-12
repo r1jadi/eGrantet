@@ -83,6 +83,7 @@ export const en = {
     notifications: "Notifications",
     signIn: "Sign in",
     signOut: "Log out",
+    signUp: "Sign up",
     account: "Account",
     myProfile: "My profile",
     myBusiness: "My business",
