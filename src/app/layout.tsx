@@ -60,8 +60,8 @@ export const viewport: Viewport = {
   ],
 };
 
-/** Applied before paint so the stored theme never flashes the wrong mode. */
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.classList.toggle("dark",t==="dark");return;}if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.classList.add("dark");}}catch(e){}})();`;
+/** Applied before paint so the stored theme never flashes the wrong mode. Light is the default; dark applies only when explicitly chosen. */
+const themeScript = `(function(){try{document.documentElement.classList.toggle("dark",localStorage.getItem("theme")==="dark");}catch(e){}})();`;
 
 /**
  * Applied before hydration so the module snapshot of the client locale store
