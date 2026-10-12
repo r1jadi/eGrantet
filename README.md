@@ -113,8 +113,9 @@ Copy `.env.example` to `.env` and set the values. **Never commit `.env`** (it is
 | `NEXT_PUBLIC_SUPABASE_URL`          | Public     | Supabase project URL.                                                                         |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY`     | Public     | Supabase anonymous key (safe for the browser; RLS still applies).                             |
 | `SUPABASE_SERVICE_ROLE_KEY`         | Server only | Service-role key. Used exclusively by server-side services after authorization checks.        |
-| `AI_API_KEY`                        | Server only | Key for the OpenAI-compatible AI gateway.                                                     |
-| `AI_BASE_URL`                       | Server only | Gateway base URL (defaults to the hackathon gateway).                                        |
+| `AI_API_KEY`                        | Server only | GroqCloud API key (free key at `https://console.groq.com/keys`). Never commit; set in `.env.local` + Vercel dashboard. |
+| `AI_BASE_URL`                       | Server only | Provider base URL (defaults to GroqCloud `https://api.groq.com/openai/v1`).                 |
+| `AI_MODEL`                          | Server only | Model id (defaults to Groq free-tier `openai/gpt-oss-20b`). Per-feature `OPENAI_<FEATURE>_MODEL` overrides take precedence. |
 | `RESEND_API_KEY` / `RESEND_FROM_EMAIL` | Server only | Transactional email sending.                                                             |
 | `ADMIN_EMAILS`                      | Server only | Comma-separated platform-admin allowlist. Empty = database role/membership model governs.     |
 | `RUN_SUPABASE_INTEGRATION_TESTS` + `SUPABASE_TEST_*` | Test only | Opt-in integration tests against a dedicated **non-production** project.       |
@@ -238,6 +239,7 @@ Honest limits (see also [Current status](#current-status-and-known-limitations))
 ## Deployment
 
 - Deploy on Vercel from this repository (`vercel.json` uses the Next.js framework preset). Set all [environment variables](#environment-variables) in the project dashboard — never commit them.
+- **AI on Vercel (required for verification/summaries/letters):** set `AI_API_KEY` to a GroqCloud key from `https://console.groq.com/keys`. `AI_BASE_URL` and `AI_MODEL` are optional — they default to GroqCloud and `openai/gpt-oss-20b`. Without `AI_API_KEY`, AI features degrade gracefully (documents/summaries fall back to manual review; nothing is fabricated).
 - Apply any pending SQL in `supabase/migrations/` manually via the Supabase Dashboard SQL Editor, in filename order, and verify RLS policies afterwards.
 - If Supabase runs on a custom domain, extend `connect-src` in `next.config.ts` accordingly.
 - After first deploy: open `/robots.txt`, `/sitemap.xml`, `/icon.svg`, `/apple-icon.png`, `/manifest.webmanifest`, `/privacy`, and `/terms` on the production domain; submit the sitemap in Google Search Console; confirm security headers on a public page.

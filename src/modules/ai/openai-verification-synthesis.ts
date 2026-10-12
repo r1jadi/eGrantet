@@ -2,7 +2,7 @@ import "server-only";
 import { AppError } from "@/lib/errors/app-error";
 import { logger } from "@/lib/logging/logger";
 import { createOpenAIClient } from "@/lib/openai/client";
-import { DEFAULT_AI_MODEL, getAiTimeoutMs, toAiServiceError, withAiTimeout } from "@/lib/openai/config";
+import { getAiModel, getAiTimeoutMs, toAiServiceError, withAiTimeout } from "@/lib/openai/config";
 import {
   buildVerificationSynthesisPrompt,
   parseVerificationSynthesisResponse,
@@ -11,7 +11,7 @@ import {
   type VerificationSynthesisService,
 } from "./verification-synthesis";
 
-const model = process.env.OPENAI_VERIFICATION_SYNTHESIS_MODEL ?? DEFAULT_AI_MODEL;
+const model = getAiModel(process.env.OPENAI_VERIFICATION_SYNTHESIS_MODEL);
 const timeoutMs = getAiTimeoutMs(process.env.OPENAI_VERIFICATION_SYNTHESIS_TIMEOUT_MS);
 
 /** OpenAI adapter for verification synthesis. Evidence in, findings + summary out. */

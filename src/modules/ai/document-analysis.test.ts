@@ -3,6 +3,7 @@ import test from "node:test";
 import {
   buildDocumentAnalysisPrompt,
   comparableDocumentFactLabels,
+  isVisionDocument,
   parseDocumentAnalysisResponse,
 } from "./document-analysis";
 
@@ -75,4 +76,12 @@ test("comparable fact labels stay aligned with the consistency module", () => {
   for (const key of ["organisationName", "registrationNumber", "projectTitle", "budgetAmount", "contactName"]) {
     assert.ok(key in comparableDocumentFactLabels);
   }
+});
+
+test("vision documents are detected by MIME type (text-only models skip them)", () => {
+  assert.equal(isVisionDocument("image/png"), true);
+  assert.equal(isVisionDocument("image/jpeg"), true);
+  assert.equal(isVisionDocument("application/pdf"), false);
+  assert.equal(isVisionDocument(""), false);
+  assert.equal(isVisionDocument("image/png "), false);
 });

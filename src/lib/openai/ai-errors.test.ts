@@ -34,10 +34,10 @@ test("missing key (plain config error) classifies as generic unavailability", ()
 });
 
 test("not-found failures classify as a model availability problem", () => {
-  const result = classifyAiFailure(new NotFoundError(404, "model gpt-5-mini not found", undefined, new Headers()));
+  const result = classifyAiFailure(new NotFoundError(404, 'The model "openai/gpt-oss-20b" does not exist', undefined, new Headers()));
   assert.equal(result.logKind, "ai_request_model_not_found");
   assert.match(result.userMessage, /model is not available/);
-  assert.doesNotMatch(result.userMessage, /gpt-5-mini/);
+  assert.doesNotMatch(result.userMessage, /gpt-oss-20b/);
 });
 
 test("rate limit and budget exhaustion classifies as rate limited", () => {

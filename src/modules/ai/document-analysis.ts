@@ -66,6 +66,19 @@ export interface DocumentAnalysisService {
   analyzeDocument(input: DocumentAnalysisInput): Promise<DocumentAnalysisResult>;
 }
 
+/** MIME types analyzed through the model's image (vision) input. */
+export const VISION_MIME_TYPES = ["image/png", "image/jpeg"] as const;
+
+/**
+ * True when the document must be sent as an image. The configured default
+ * model (`openai/gpt-oss-20b`) is text-only, so adapters fail these inputs
+ * fast with a clear manual-review outcome instead of sending a doomed
+ * multi-megabyte vision request to the provider.
+ */
+export function isVisionDocument(mimeType: string): boolean {
+  return (VISION_MIME_TYPES as readonly string[]).includes(mimeType);
+}
+
 /**
  * Strict response validation. Limits field counts and text lengths so a
  * runaway model response cannot flood storage, and requires `sourceQuote`

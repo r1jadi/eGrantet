@@ -6,7 +6,9 @@ import { OpenAIApplicationSummaryService } from "./openai-application-summary";
 export {
   DOCUMENT_ANALYSIS_STATUSES,
   DOCUMENT_TYPES,
+  VISION_MIME_TYPES,
   buildDocumentAnalysisPrompt,
+  isVisionDocument,
   parseDocumentAnalysisResponse,
   comparableDocumentFactLabels,
   type DocumentFinding,

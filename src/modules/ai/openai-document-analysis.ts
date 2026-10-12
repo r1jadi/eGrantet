@@ -2,16 +2,17 @@ import "server-only";
 import { AppError } from "@/lib/errors/app-error";
 import { logger } from "@/lib/logging/logger";
 import { createOpenAIClient } from "@/lib/openai/client";
-import { DEFAULT_AI_MODEL, getAiTimeoutMs, toAiServiceError, withAiTimeout } from "@/lib/openai/config";
+import { getAiModel, getAiTimeoutMs, toAiServiceError, withAiTimeout } from "@/lib/openai/config";
 import {
   buildDocumentAnalysisPrompt,
+  isVisionDocument,
   parseDocumentAnalysisResponse,
   type DocumentAnalysisInput,
   type DocumentAnalysisResult,
   type DocumentAnalysisService,
 } from "./document-analysis";
 
-const model = process.env.OPENAI_DOCUMENT_ANALYSIS_MODEL ?? DEFAULT_AI_MODEL;
+const model = getAiModel(process.env.OPENAI_DOCUMENT_ANALYSIS_MODEL);
 const timeoutMs = getAiTimeoutMs(process.env.OPENAI_DOCUMENT_ANALYSIS_TIMEOUT_MS);
 
 /** Image content types are analyzed via the model's vision input; PDFs as extracted text. */
@@ -34,13 +35,23 @@ function userContentFor(
 /** OpenAI adapter for document analysis. Facts + document content in, structured result out. */
 export class OpenAIDocumentAnalysisService implements DocumentAnalysisService {
   async analyzeDocument(input: DocumentAnalysisInput): Promise<DocumentAnalysisResult> {
+    // The configured default model is text-only: fail image inputs fast with
+    // a clear manual-review outcome instead of sending a doomed vision
+    // request (multi-megabyte base64 payload) that the provider rejects.
+    // Lift this guard only when pointing the adapter at a vision-capable model.
+    if (isVisionDocument(input.mimeType)) {
+      throw new AppError(
+        "AI",
+        `Image documents cannot be analyzed by the configured text-only model (${model}) and need manual review.`,
+      );
+    }
     const client = createOpenAIClient();
     try {
       const response = await withAiTimeout(
         client.chat.completions.create({
           model,
-          // NOTE: no custom `temperature` — the hackathon gateway's reasoning
-          // model rejects non-default values.
+          // NOTE: no custom `temperature` — sampling params are intentionally
+          // left unset so the provider default applies across models.
           messages: [
             {
               role: "system",

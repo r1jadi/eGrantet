@@ -2,10 +2,10 @@ import "server-only";
 import { AppError } from "@/lib/errors/app-error";
 import { logger } from "@/lib/logging/logger";
 import { createOpenAIClient } from "@/lib/openai/client";
-import { DEFAULT_AI_MODEL, getAiTimeoutMs, toAiServiceError, withAiTimeout } from "@/lib/openai/config";
+import { getAiModel, getAiTimeoutMs, toAiServiceError, withAiTimeout } from "@/lib/openai/config";
 import { buildDecisionLetterPrompt, parseDecisionLetterResponse, type DecisionLetterFacts, type DecisionLetterResult, type DecisionLetterService } from "./decision-letter";
 
-const model = process.env.OPENAI_DECISION_LETTER_MODEL ?? DEFAULT_AI_MODEL;
+const model = getAiModel(process.env.OPENAI_DECISION_LETTER_MODEL);
 const timeoutMs = getAiTimeoutMs(process.env.OPENAI_DECISION_LETTER_TIMEOUT_MS);
 
 /** OpenAI adapter for decision-letter wording. Facts in, structured letter out. */
@@ -17,8 +17,8 @@ export class OpenAIDecisionLetterService implements DecisionLetterService {
       const response = await withAiTimeout(
         client.chat.completions.create({
           model,
-          // NOTE: no custom `temperature` — the hackathon gateway's gpt-5-mini
-          // (reasoning model behind LiteLLM) rejects non-default values.
+          // NOTE: no custom `temperature` — sampling params are intentionally
+          // left unset so the provider default applies across models.
           messages: [
             { role: "system", content: "You are a precise municipal correspondence writer. You never invent facts." },
             { role: "user", content: prompt },

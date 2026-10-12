@@ -2,10 +2,10 @@ import "server-only";
 import { AppError } from "@/lib/errors/app-error";
 import { logger } from "@/lib/logging/logger";
 import { createOpenAIClient } from "@/lib/openai/client";
-import { DEFAULT_AI_MODEL, getAiTimeoutMs, toAiServiceError, withAiTimeout } from "@/lib/openai/config";
+import { getAiModel, getAiTimeoutMs, toAiServiceError, withAiTimeout } from "@/lib/openai/config";
 import { buildApplicationSummaryPrompt, parseApplicationSummaryResponse, type ApplicationSummaryFacts, type ApplicationSummaryResult, type ApplicationSummaryService } from "./application-summary";
 
-const model = process.env.OPENAI_APPLICATION_SUMMARY_MODEL ?? DEFAULT_AI_MODEL;
+const model = getAiModel(process.env.OPENAI_APPLICATION_SUMMARY_MODEL);
 const timeoutMs = getAiTimeoutMs(process.env.OPENAI_APPLICATION_SUMMARY_TIMEOUT_MS);
 
 /** OpenAI adapter for application summaries. Facts in, 3–4 sentence summary out. */
@@ -17,8 +17,8 @@ export class OpenAIApplicationSummaryService implements ApplicationSummaryServic
       const response = await withAiTimeout(
         client.chat.completions.create({
           model,
-          // NOTE: no custom `temperature` — the hackathon gateway's gpt-5-mini
-          // (reasoning model behind LiteLLM) rejects non-default values.
+          // NOTE: no custom `temperature` — sampling params are intentionally
+          // left unset so the provider default applies across models.
           messages: [
             { role: "system", content: "You are a precise municipal analyst. You summarize only what you are given and never invent facts, results, or decisions." },
             { role: "user", content: prompt },
