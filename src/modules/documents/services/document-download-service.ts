@@ -1,4 +1,5 @@
 import "server-only";
+import { z } from "zod";
 import { requireAuth } from "@/lib/auth/server";
 import { AppError } from "@/lib/errors/app-error";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -13,6 +14,9 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
  * only ever receives a short-lived signed URL.
  */
 export async function getApplicationDocumentDownloadUrl(documentId: string): Promise<string> {
+  // Strict ID shape before any database interaction (defense in depth; the
+  // query itself is parameterized through the Supabase client).
+  if (!z.uuid().safeParse(documentId).success) throw new AppError("NOT_FOUND", "Document not found.");
   const user = await requireAuth();
   const admin = createSupabaseAdminClient();
   const { data: document, error } = await admin

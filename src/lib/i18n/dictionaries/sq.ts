@@ -35,7 +35,7 @@ export const sq: Dictionary = {
     },
   },
   common: {
-    productName: "Team Avengers",
+    productName: "eGrantet",
     save: "Ruaj",
     saving: "Duke ruajtur…",
     cancel: "Anulo",
@@ -186,7 +186,7 @@ export const sq: Dictionary = {
     help: "Ndihmë",
   },
   auth: {
-    brandLine: "Team Avengers",
+    brandLine: "eGrantet",
     loginTitle: "Mirë se vini përsëri",
     loginDescription: "Hyni për të vazhduar rrugëtimin tuaj me grantet.",
     loginAction: "Hyr",
@@ -218,7 +218,7 @@ export const sq: Dictionary = {
     termsOfUse: "kushtet e përdorimit",
     privacyNotice: "njoftimin e privatësisë",
     pleaseWait: "Ju lutem prisni…",
-    registerPrompt: "I ri në Team Avengers? {action}",
+    registerPrompt: "I ri në eGrantet? {action}",
     registerPromptAction: "Krijo llogari",
     loginPrompt: "Keni llogari? {action}",
     loginPromptAction: "Hyr",
@@ -409,7 +409,7 @@ export const sq: Dictionary = {
     addDocument: "Shto dokument",
   },
   municipality: {
-    productName: "Team Avengers — Komuna",
+    productName: "eGrantet — Komuna",
     dashboardWelcome: "Mirë se vini, {name}",
     dashboardSubtitle: "Programet tuaja të granteve dhe aplikimet që vijnë, në një pamje.",
     openReviewQueue: "Hap radhën e shqyrtimit",
@@ -894,7 +894,7 @@ export const sq: Dictionary = {
     viewAllLink: "Shiko të gjitha",
   },
   admin: {
-    productName: "Team Avengers — Administrimi i platformës",
+    productName: "eGrantet — Administrimi i platformës",
     title: "Administrimi i platformës",
     description: "Hapësira juaj e mbrojtur për administrimin e platformës.",
     signedInAdministrator: "Administratori i kyçur",
@@ -923,7 +923,7 @@ export const sq: Dictionary = {
     accessDescription: "Qasja kërkon si rolin ADMIN ashtu edhe një email të konfiguruar në listën e administratorëve vetëm në server.",
   },
   evaluator: {
-    productName: "Team Avengers — Vlerësuesi",
+    productName: "eGrantet — Vlerësuesi",
     assignedApplicationsTitle: "Aplikimet e caktuara",
     assignedApplicationsDescription: "Aplikimet e caktuara për ju për vlerësim.",
     scoring: "Vlerësimi",
@@ -1324,5 +1324,32 @@ export const sq: Dictionary = {
     sr: "🇷🇸 Srpski",
     switch: "Ndrysho gjuhën",
     switchedTo: "Gjuha u ndryshua në {locale}",
+  },
+  cookies: {
+    title: "Si i përdorim cookies",
+    description:
+      "eGrantet përdor cookies thelbësore për t'ju mbajtur të kyçur dhe të sigurt, dhe mban mend gjuhën dhe temën tuaj kur e kërkoni. Ne nuk përdorim ndjekës analitikë apo reklamash.",
+    essentialTitle: "Thelbësore",
+    essentialDescription: "Seanca e hyrjes, siguria dhe balancimi i ngarkesës. Gjithmonë aktive — faqja nuk funksionon pa to.",
+    preferencesTitle: "Preferencat",
+    preferencesDescription: "Mban mend gjuhën dhe temën (dritë/errësirë) në këtë pajisje.",
+    analyticsTitle: "Analitika & marketingu",
+    analyticsDescription: "Nuk përdoren. eGrantet nuk ngarkon skripte analitike apo reklamash.",
+    acceptAll: "Prano të gjitha",
+    rejectOptional: "Refuzo opsionalet",
+    customize: "Përshtat",
+    save: "Ruaj preferencat",
+    saved: "Preferencat tuaja për cookies u ruajtën.",
+    alwaysOn: "Gjithmonë aktive",
+  },
+  footer: {
+    description:
+      "eGrantet është platforma e granteve dhe subvencioneve komunale: zbuloni grantet e hapura, aplikoni online dhe ndiqni aplikimin tuaj.",
+    navigation: "Eksploro",
+    legal: "Ligjore",
+    privacy: "Politika e Privatësisë",
+    terms: "Kushtet e Përdorimit",
+    cookiePreferences: "Preferencat e cookies",
+    rights: "Të gjitha të drejtat e rezervuara.",
   },
 };

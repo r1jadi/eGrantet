@@ -6,7 +6,7 @@ import { translate } from "@/lib/i18n";
 import { getCurrentProfile } from "@/lib/auth/server";
 import { ProfileForm } from "@/modules/users/components/profile-form";
 
-export const metadata = { title: "Profile settings | Team Avengers" };
+export const metadata = { title: "Profile settings | eGrantet" };
 export const dynamic = "force-dynamic";
 
 export default async function ProfileSettingsPage() {

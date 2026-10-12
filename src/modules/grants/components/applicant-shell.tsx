@@ -10,6 +10,7 @@ import { useT } from "@/lib/i18n/client";
 import { LanguageToggle } from "@/lib/i18n/language-toggle";
 import type { TranslationKey } from "@/lib/i18n";
 import { AuthNavControls } from "@/modules/users";
+import { SiteFooter } from "@/components/shared/site-footer";
 
 const navigation: Array<{ labelKey: TranslationKey; href: string; icon: typeof House }> = [
   { labelKey: "nav.home", href: "/", icon: House },
@@ -22,7 +23,7 @@ export function ApplicantShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const t = useT();
 
-  return <div className="min-h-screen bg-background">
+  return <div className="flex min-h-screen flex-col bg-background">
     <header className="sticky top-0 z-30 border-b bg-card/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3 font-semibold text-foreground" onClick={() => setMenuOpen(false)}>
@@ -45,6 +46,7 @@ export function ApplicantShell({ children }: { children: ReactNode }) {
       </div>
       {menuOpen && <nav id="applicant-menu" aria-label={t("nav.mobileNavigation")} className="border-t bg-card px-4 py-3 md:hidden">{navigation.map(({ labelKey, href, icon: Icon }) => <Link key={href} href={href} onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"><Icon className="size-4" aria-hidden="true" />{t(labelKey)}</Link>)}</nav>}
     </header>
-    {children}
+    <div className="flex-1">{children}</div>
+    <SiteFooter />
   </div>;
 }

@@ -3,7 +3,7 @@ import { PageContainer } from "@/components/shared/layout";
 import { SectionHeading } from "@/modules/grants/components/municipality-sections";
 import { listMunicipalitiesForCurrentUser } from "@/modules/grants";
 
-export const metadata = { title: "New grant | Team Avengers" };
+export const metadata = { title: "New grant | eGrantet" };
 
 export default async function NewGrantPage() {
   const municipalities = await listMunicipalitiesForCurrentUser();

@@ -8,6 +8,8 @@ import { getServerLocale } from "@/lib/i18n/server";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = { alternates: { canonical: "/" } };
+
 export default async function Home() {
   const locale = await getServerLocale();
   const t = (key: Parameters<typeof translate>[1]) => translate(locale, key);

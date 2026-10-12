@@ -10,7 +10,7 @@ import { getServerLocale } from "@/lib/i18n/server";
 import { listMunicipalityGranteeProjects } from "@/modules/grantee";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Awarded projects | Team Avengers" };
+export const metadata = { title: "Awarded projects | eGrantet" };
 
 export default async function MunicipalityProjectsPage() {
   const locale = await getServerLocale();

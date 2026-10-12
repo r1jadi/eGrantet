@@ -11,7 +11,7 @@ import type { BusinessDocument } from "@/modules/users/services/business-documen
 import type { BusinessUploadedDocument } from "@/modules/users/services/business-upload-service";
 import { MyBusinessDocuments } from "@/modules/users/components/my-business-documents";
 
-export const metadata = { title: "My Business | Team Avengers" };
+export const metadata = { title: "My Business | eGrantet" };
 export const dynamic = "force-dynamic";
 
 export default async function MyBusinessPage() {

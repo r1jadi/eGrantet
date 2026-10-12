@@ -6,6 +6,9 @@ import { requireAdminAccess } from "@/lib/auth/server";
 import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
+/** Platform administration is private: it must never be indexed. */
+export const metadata = { robots: { index: false, follow: false } };
+
 const navigationItems: NavigationItem[] = [
   { label: "Overview", href: "/admin", icon: <LayoutDashboard className="size-4" aria-hidden="true" />, roles: ["ADMIN"] },
   { label: "Municipalities", href: "/admin/municipalities", icon: <Building2 className="size-4" aria-hidden="true" />, roles: ["ADMIN"] },

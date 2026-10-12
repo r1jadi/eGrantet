@@ -1,5 +1,6 @@
-import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, ClipboardList, Landmark, Wallet } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Landmark, Wallet } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,6 +13,24 @@ import { translate, formatCurrency as formatMoney } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
 export const dynamic = "force-dynamic";
+
+/** Page-specific metadata from the published grant only (never draft content). */
+export async function generateMetadata({ params }: { params: Promise<{ grantId: string }> }): Promise<Metadata> {
+  const { grantId } = await params;
+  try {
+    const grant = await getPublicDirectoryGrantDetail(grantId);
+    const description =
+      grant.description.length > 155 ? `${grant.description.slice(0, 152).trimEnd()}…` : grant.description;
+    return {
+      title: `${grant.title} | eGrantet`,
+      description,
+      alternates: { canonical: `/grants/${grant.id}` },
+      openGraph: { title: `${grant.title} | eGrantet`, description, type: "article" },
+    };
+  } catch {
+    return { title: "Grant not found | eGrantet", robots: { index: false, follow: false } };
+  }
+}
 
 const REQUIREMENT_TYPE_KEYS = {
   ELIGIBILITY: "grantForms.typeEligibility",

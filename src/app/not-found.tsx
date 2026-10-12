@@ -3,7 +3,7 @@ import { PageContainer } from "@/components/shared/layout";
 import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "Page not found | Team Avengers" };
+export const metadata = { title: "Page not found | eGrantet" };
 
 export default async function RootNotFound() {
   const locale = await getServerLocale().catch(() => "en" as const);

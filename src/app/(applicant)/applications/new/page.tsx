@@ -10,7 +10,7 @@ import { getCurrentProfile } from "@/lib/auth/server";
 import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "New application | City grants" };
+export const metadata = { title: "New application | eGrantet" };
 export const dynamic = "force-dynamic";
 
 /**

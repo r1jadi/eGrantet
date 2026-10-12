@@ -8,6 +8,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { logger } from "@/lib/logging/logger";
 import { emailVerificationRedirect, passwordResetRedirect } from "@/lib/auth/env";
 import { getAuthenticatedLandingPath, sanitizeNextPath } from "@/lib/auth/redirects";
+import { enforceRateLimit, getClientIp } from "@/lib/security/rate-limit";
 import { recordAuditEvent } from "@/modules/audit/services/audit-service";
 import { forgotPasswordSchema, resetPasswordSchema, signInSchema, signUpSchema } from "../schemas";
 import { normalizeBusinessNui } from "../nui";
@@ -65,6 +66,8 @@ export async function signUpAction(_previous: AuthActionState, input: FormData):
       accountType: input.get("accountType") ?? "individual",
       businessNui: input.get("businessNui") || undefined,
     });
+    // Abuse protection before any Auth/DB work (best-effort per-instance).
+    enforceRateLimit({ key: `auth:signup:${await getClientIp()}`, limit: 5, windowMs: 60 * 60 * 1_000 });
     // Canonical NUI normalization happens server-side: the client value is
     // never stored as-is, and an invalid/missing NUI cannot reach Auth.
     const normalizedNui = accountType === "business" ? normalizeBusinessNui(businessNui) : null;
@@ -144,6 +147,8 @@ async function removeAuthUser(userId: string): Promise<void> {
 export async function signInAction(_previous: AuthActionState, input: FormData): Promise<AuthActionState> {
   try {
     const { email, password } = signInSchema.parse({ email: input.get("email"), password: input.get("password") });
+    // Credential-stuffing protection before contacting Auth (best-effort per-instance).
+    enforceRateLimit({ key: `auth:signin:${await getClientIp()}`, limit: 10, windowMs: 5 * 60 * 1_000 });
     const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw mapAuthError(error.code, error.message || "Unable to sign in.");
@@ -166,6 +171,8 @@ export async function signOutAction() {
 export async function requestPasswordResetAction(_previous: AuthActionState, input: FormData): Promise<AuthActionState> {
   try {
     const { email } = forgotPasswordSchema.parse({ email: input.get("email") });
+    // Email-triggering endpoint: strict per-IP budget (best-effort per-instance).
+    enforceRateLimit({ key: `auth:reset:${await getClientIp()}`, limit: 5, windowMs: 60 * 60 * 1_000 });
     const supabase = await createSupabaseServerClient();
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: passwordResetRedirect });
     if (error) throw mapAuthError(error.code, error.message || "Unable to send the reset email.");
@@ -179,6 +186,7 @@ export async function requestPasswordResetAction(_previous: AuthActionState, inp
 export async function updatePasswordAction(_previous: AuthActionState, input: FormData): Promise<AuthActionState> {
   try {
     const { password } = resetPasswordSchema.parse({ password: input.get("password"), confirmPassword: input.get("confirmPassword") });
+    enforceRateLimit({ key: `auth:update-password:${await getClientIp()}`, limit: 10, windowMs: 10 * 60 * 1_000 });
     const supabase = await createSupabaseServerClient();
     const { data: { user }, error: userError } = await supabase.auth.getUser();
     if (userError || !user) {

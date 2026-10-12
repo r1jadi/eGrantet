@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { AppError, toSafeErrorMessage } from "@/lib/errors/app-error";
+import { enforceRateLimit, getClientIp } from "@/lib/security/rate-limit";
 import { generateDecisionLetter, sendDecisionLetter } from "../services/decision-letter-service";
 import { z } from "zod";
 
@@ -33,6 +34,8 @@ export async function generateDecisionLetterAction(_previous: GenerateLetterStat
     // Authorization lives in the service: buildDecisionLetterFacts →
     // getMunicipalApplicationDetail enforces municipality membership, so
     // staff can generate letters for their own municipality's applications.
+    // AI-heavy operation: per-client budget (best-effort per-instance).
+    enforceRateLimit({ key: `ai:letter:${await getClientIp()}`, limit: 20, windowMs: 10 * 60 * 1_000 });
     const letter = await generateDecisionLetter(parsed.data.applicationId, parsed.data.decision, parsed.data.reviewerNote);
     return { status: "success", subject: letter.subject, body: letter.body, factsJson: JSON.stringify(letter.facts) };
   } catch (error) {
@@ -72,6 +75,8 @@ export async function sendDecisionLetterAction(_previous: SendLetterState, formD
   try {
     // Authorization lives in the service: sendDecisionLetter loads through
     // getMunicipalApplicationDetail (municipality membership boundary).
+    // Email-triggering operation: per-client budget (best-effort per-instance).
+    enforceRateLimit({ key: `email:letter:${await getClientIp()}`, limit: 30, windowMs: 60 * 60 * 1_000 });
     // Form fields are strings; the service contract expects a boolean.
     const result = await sendDecisionLetter({ ...parsed.data, wasEdited: parsed.data.wasEdited === "true" });
     revalidatePath("/municipality/applications");

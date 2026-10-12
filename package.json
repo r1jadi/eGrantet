@@ -1,5 +1,5 @@
 {
-  "name": "team-avengers",
+  "name": "egrantet",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -13,16 +13,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AI4Society-Hachathon/Team-Avengers.git"
+    "url": "git+https://github.com/r1jadi/eGrantet.git"
   },
-  "keywords": [],
+  "keywords": [
+    "grants",
+    "municipal-grants",
+    "subsidies",
+    "nextjs",
+    "supabase"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AI4Society-Hachathon/Team-Avengers/issues"
+    "url": "https://github.com/r1jadi/eGrantet/issues"
   },
-  "homepage": "https://github.com/AI4Society-Hachathon/Team-Avengers#readme",
-  "description": "",
+  "homepage": "https://github.com/r1jadi/eGrantet#readme",
+  "description": "eGrantet — municipal grants and subsidies management platform.",
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
     "@supabase/ssr": "^0.12.7",
@@ -36,6 +42,7 @@
     "react-dom": "^19.3.0",
     "react-hook-form": "^7.88.0",
     "resend": "^6.29.0",
+    "server-only": "^0.0.1",
     "tailwind-merge": "^3.7.0",
     "unpdf": "^1.8.1",
     "zod": "^4.6.5"

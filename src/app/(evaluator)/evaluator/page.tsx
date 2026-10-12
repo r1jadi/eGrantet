@@ -9,7 +9,7 @@ import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 import { Suspense } from "react";
 
-export const metadata: Metadata = { title: "Evaluator workspace | Team Avengers" };
+export const metadata: Metadata = { title: "Evaluator workspace | eGrantet" };
 export const dynamic = "force-dynamic";
 
 async function Assignments() {

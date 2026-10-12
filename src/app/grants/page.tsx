@@ -5,7 +5,12 @@ import { listPublicDirectoryGrants } from "@/modules/grants";
 import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "Find grants | City grants" };
+export const metadata = {
+  title: "Find grants | eGrantet",
+  description:
+    "Explore open municipal grants for community projects, local business, culture, youth, and environment. Check requirements and apply online with eGrantet.",
+  alternates: { canonical: "/grants" },
+};
 export const dynamic = "force-dynamic";
 
 export default async function GrantsPage() {

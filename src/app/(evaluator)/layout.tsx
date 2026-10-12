@@ -5,6 +5,9 @@ import { requireAreaProfile } from "@/lib/auth/guards";
 import { getServerLocale } from "@/lib/i18n/server";
 import { translate } from "@/lib/i18n";
 
+/** Evaluator area is private: assigned applications must never be indexed. */
+export const metadata = { robots: { index: false, follow: false } };
+
 /** Server-side guard for the evaluator area; the proxy enforces this first. */
 export default async function EvaluatorAreaLayout({ children }: { children: ReactNode }) {
   await requireAreaProfile("evaluator");

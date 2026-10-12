@@ -5,7 +5,7 @@ import { GrantForm } from "@/modules/grants/components/municipality-forms";
 import { SectionHeading } from "@/modules/grants/components/municipality-sections";
 import { getGrantForManagement } from "@/modules/grants";
 
-export const metadata = { title: "Edit grant | Team Avengers" };
+export const metadata = { title: "Edit grant | eGrantet" };
 
 export default async function EditGrantPage({ params }: { params: Promise<{ grantId: string }> }) {
   const { grantId } = await params;

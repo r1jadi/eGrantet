@@ -1325,4 +1325,31 @@ export const sr: Dictionary = {
     whatYoullNeed: "Šta će vam trebati",
     yearEstablished: "Godina osnivanja",
   },
+  cookies: {
+    title: "Kako koristimo kolačiće",
+    description:
+      "eGrantet koristi neophodne kolačiće da vas drži prijavljenim i bezbednim, i pamti vaš jezik i temu kada to tražite. Ne koristimo analitiku ni reklamne trekere.",
+    essentialTitle: "Neophodni",
+    essentialDescription: "Sesija prijave, bezbednost i balansiranje opterećenja. Uvek uključeni — sajt ne radi bez njih.",
+    preferencesTitle: "Podešavanja",
+    preferencesDescription: "Pamti vaš jezik i svetlu/tamnu temu na ovom uređaju.",
+    analyticsTitle: "Analitika i marketing",
+    analyticsDescription: "Ne koriste se. eGrantet ne učitava analitičke ni reklamne skripte.",
+    acceptAll: "Prihvati sve",
+    rejectOptional: "Odbij opciono",
+    customize: "Prilagodi",
+    save: "Sačuvaj podešavanja",
+    saved: "Vaša podešavanja kolačića su sačuvana.",
+    alwaysOn: "Uvek uključeno",
+  },
+  footer: {
+    description:
+      "eGrantet je platforma za opštinske grantove i subvencije: pronađite otvorene grantove, prijavite se onlajn i pratite svoju prijavu.",
+    navigation: "Istraži",
+    legal: "Pravno",
+    privacy: "Politika privatnosti",
+    terms: "Uslovi korišćenja",
+    cookiePreferences: "Podešavanja kolačića",
+    rights: "Sva prava zadržana.",
+  },
 };

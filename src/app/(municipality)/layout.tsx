@@ -7,6 +7,9 @@ import { translate, type TranslationKey } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 import type { NavigationItem, NavigationRole } from "@/components/shared/navigation";
 
+/** Municipality workspace is private: review content must never be indexed. */
+export const metadata = { robots: { index: false, follow: false } };
+
 const navigationItems: Array<{ labelKey: TranslationKey; href: string; icon: React.ReactNode; roles?: NavigationRole[] }> = [
   { labelKey: "nav.dashboard", href: "/municipality", icon: <LayoutDashboard className="size-4" aria-hidden="true" />, roles: ["MUNICIPAL_EMPLOYEE", "ADMIN"] },
   { labelKey: "nav.applications", href: "/municipality/applications", icon: <FileStack className="size-4" aria-hidden="true" />, roles: ["MUNICIPAL_EMPLOYEE", "ADMIN"] },

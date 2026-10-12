@@ -13,7 +13,7 @@ import { getGrantForManagement } from "@/modules/grants";
 import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "Manage grant | Team Avengers" };
+export const metadata = { title: "Manage grant | eGrantet" };
 
 type ManagementData = Awaited<ReturnType<typeof getGrantForManagement>>;
 type GrantRow = ManagementData["grant"];

@@ -2,6 +2,7 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { requireAuth } from "@/lib/auth/server";
 import { AppError } from "@/lib/errors/app-error";
+import { enforceRateLimit } from "@/lib/security/rate-limit";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { recordAuditEvent } from "@/modules/audit/services/audit-service";
 
@@ -10,6 +11,8 @@ const maximumFileSizeBytes = 10 * 1024 * 1024;
 
 export async function uploadApplicationDocument(applicationId: string, requirementId: string | null, file: File, documentType: string) {
   const user = await requireAuth();
+  // Upload/storage abuse protection, scoped to the authenticated user.
+  enforceRateLimit({ key: `documents:upload:${user.id}`, limit: 30, windowMs: 10 * 60 * 1_000 });
   if (!allowedContentTypes.has(file.type)) throw new AppError("VALIDATION", "Only PDF, PNG, and JPEG files are allowed.");
   if (file.size <= 0 || file.size > maximumFileSizeBytes) throw new AppError("VALIDATION", "Document size must be between 1 byte and 10 MB.");
   const admin = createSupabaseAdminClient();

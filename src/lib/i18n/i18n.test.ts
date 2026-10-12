@@ -34,7 +34,7 @@ test("English dictionary values are English, Albanian values are Albanian", () =
   assert.equal(translate("sq", "nav.home"), "Kryefaqja");
   assert.equal(translate("en", "auth.loginTitle"), "Welcome back");
   assert.equal(translate("sq", "auth.loginTitle"), "Mirë se vini përsëri");
-  assert.equal(translate("sq", "common.productName"), "Team Avengers");
+  assert.equal(translate("sq", "common.productName"), "eGrantet");
 });
 
 test("missing keys fall back to English, then to the key itself", () => {

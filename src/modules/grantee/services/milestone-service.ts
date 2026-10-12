@@ -1,5 +1,6 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
+import { z } from "zod";
 import { AppError } from "@/lib/errors/app-error";
 import { requireMunicipalityAccess, requireProfile } from "@/lib/auth/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -285,6 +286,9 @@ export async function reviewMilestoneSubmission(input: unknown) {
 
 /** Returns a time-limited signed URL for evidence inside a project the actor can access. */
 export async function getEvidenceDownloadUrl(evidenceId: string): Promise<string> {
+  // Strict ID shape before any database interaction (defense in depth; the
+  // query itself is parameterized through the Supabase client).
+  if (!z.uuid().safeParse(evidenceId).success) throw new AppError("NOT_FOUND", "Evidence not found.");
   const admin = createSupabaseAdminClient();
   const { data: evidence, error } = await admin
     .from("milestone_evidence")

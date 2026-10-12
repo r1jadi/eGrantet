@@ -15,7 +15,7 @@ import type { MilestoneStatus } from "@/modules/grantee/milestones";
 import { translate, formatDate, formatCurrency, type TranslationKey } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata: Metadata = { title: "My project | Team Avengers" };
+export const metadata: Metadata = { title: "My project | eGrantet" };
 export const dynamic = "force-dynamic";
 
 const milestoneStatusKeys: Record<MilestoneStatus, TranslationKey> = {

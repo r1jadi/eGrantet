@@ -13,7 +13,7 @@ import { getServerLocale } from "@/lib/i18n/server";
 import { listMunicipalityGrants } from "@/modules/grants";
 import { GRANT_STATUSES } from "@/modules/grants/types";
 
-export const metadata = { title: "Manage grants | Team Avengers" };
+export const metadata = { title: "Manage grants | eGrantet" };
 
 const statusLabelKeys: Record<string, TranslationKey> = { DRAFT: "municipality.drafts", PUBLISHED: "municipality.published", CLOSED: "municipality.closed", ARCHIVED: "municipality.archived" };
 

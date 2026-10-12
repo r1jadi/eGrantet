@@ -3,7 +3,7 @@ import { confirmEmailAction } from "@/modules/users/actions/auth-actions";
 import { getAuthenticatedLandingPath } from "@/lib/auth/redirects";
 import { getCurrentProfile } from "@/lib/auth/server";
 
-export const metadata = { title: "Email confirmed | Team Avengers" };
+export const metadata = { title: "Email confirmed | eGrantet", robots: { index: false, follow: false } };
 
 export default async function AuthVerifiedPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const params = await searchParams;

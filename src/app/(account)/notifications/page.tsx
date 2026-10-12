@@ -10,7 +10,7 @@ import { ClearReadButton } from "@/modules/notifications/components/clear-read-b
 import { translate, formatDate, type TranslationKey } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "Notifications | City grants" };
+export const metadata = { title: "Notifications | eGrantet" };
 export const dynamic = "force-dynamic";
 
 const typeLabelKeys: Record<string, TranslationKey> = {

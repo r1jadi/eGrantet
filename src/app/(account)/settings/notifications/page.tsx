@@ -6,7 +6,7 @@ import { loadNotificationPreferencesAction } from "@/modules/notifications/actio
 import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "Notification settings | City grants" };
+export const metadata = { title: "Notification settings | eGrantet" };
 export const dynamic = "force-dynamic";
 
 export default async function NotificationSettingsPage() {

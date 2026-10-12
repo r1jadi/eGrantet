@@ -36,7 +36,7 @@ export function renderEmailHtml(email: RenderedEmail): string {
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border:1px solid ${BORDER};border-radius:12px;overflow:hidden;">
   <tr><td style="background:${PRIMARY};padding:20px 24px;">
-    <span style="color:#ffffff;font-size:16px;font-weight:700;">Komunalni grantovi</span>
+    <span style="color:#ffffff;font-size:16px;font-weight:700;">eGrantet</span>
   </td></tr>
   <tr><td style="padding:24px;">
     <h1 style="margin:0 0 16px;color:${TEXT};font-size:20px;line-height:28px;">${escapeHtml(email.heading)}</h1>

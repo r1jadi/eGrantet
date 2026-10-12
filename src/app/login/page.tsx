@@ -3,7 +3,7 @@ import { redirectIfAuthenticated } from "@/lib/auth/guards";
 import { AuthForm } from "@/modules/users";
 import { AuthLayout } from "@/modules/users/components/auth-layout";
 
-export const metadata: Metadata = { title: "Sign in | Team Avengers" };
+export const metadata: Metadata = { title: "Sign in | eGrantet", robots: { index: false, follow: false } };
 
 function readNext(params: Record<string, string | string[] | undefined>): string | undefined {
   const raw = params.next;

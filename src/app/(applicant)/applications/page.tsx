@@ -12,7 +12,7 @@ import { getServerLocale } from "@/lib/i18n/server";
 import { getCurrentProfile } from "@/lib/auth/server";
 import { listApplicationsForApplicant } from "@/modules/applications";
 
-export const metadata = { title: "My applications | Team Avengers" };
+export const metadata = { title: "My applications | eGrantet" };
 
 type ApplicationRow = Awaited<ReturnType<typeof listApplicationsForApplicant>>[number];
 

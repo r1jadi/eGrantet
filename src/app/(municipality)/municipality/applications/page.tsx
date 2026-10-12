@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/shared/layout";
 import { translate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "Applications | Team Avengers" };
+export const metadata = { title: "Applications | eGrantet" };
 export const dynamic = "force-dynamic";
 
 export default async function MunicipalApplicationsPage() {

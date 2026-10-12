@@ -26,7 +26,7 @@ import {
 import { translate, formatDate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "Platform administration | Team Avengers" };
+export const metadata = { title: "Platform administration | eGrantet" };
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {

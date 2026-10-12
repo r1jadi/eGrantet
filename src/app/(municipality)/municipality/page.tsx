@@ -13,7 +13,7 @@ import { getCurrentProfile } from "@/lib/auth/server";
 import { translate, formatDate } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
 
-export const metadata = { title: "Municipality dashboard | Team Avengers" };
+export const metadata = { title: "Municipality dashboard | eGrantet" };
 export const dynamic = "force-dynamic";
 
 export default async function MunicipalityDashboardPage() {
